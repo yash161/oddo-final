@@ -1,37 +1,8 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import Header from '@/app/(components)/Header/page';
-import Footer from '@/app/(components)/Footer/page';
-import { fetchBooks } from '@/app/api/hompage/route';
-import { FaFilter } from 'react-icons/fa';
+
 
 const HomePage = () => {
-  const [books, setBooks] = useState([]);
-  const [filteredBooks, setFilteredBooks] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [pageSize, setPageSize] = useState(10);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  useEffect(() => {
-    async function getBooks() {
-      const booksData = await fetchBooks();
-      setBooks(booksData);
-      setFilteredBooks(booksData);
-    }
-    getBooks();
-  }, []);
-
-  useEffect(() => {
-    const filtered = books.filter(book =>
-      book.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setFilteredBooks(filtered);
-    setCurrentPage(1); // Reset to the first page after filtering
-  }, [searchQuery, books]);
-
-  const totalPages = Math.ceil(filteredBooks.length / pageSize);
-  const startIndex = (currentPage - 1) * pageSize;
-  const displayedBooks = filteredBooks.slice(startIndex, startIndex + pageSize);
 
   return (
     <div style={{ background: 'linear-gradient(to right, #00695c, #00796b, #00897b)', minHeight: '100vh', display: 'flex', flexDirection: 'column', color: 'white' }}>

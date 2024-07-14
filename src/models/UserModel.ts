@@ -1,4 +1,8 @@
 import mongoose from "mongoose";
+import { Schema } from "mongoose";
+
+
+
 
 
 const userSchema = new mongoose.Schema({
@@ -17,8 +21,7 @@ const userSchema = new mongoose.Schema({
         required: [true, "Please provide the password"],
     },
     book_ref_num: {
-        type: Number,
-        required: [true]
+        type: [Number],
     },
     interest: {
         type: [String],
@@ -45,7 +48,6 @@ const userSchema = new mongoose.Schema({
         default: false
     }
 })
+const UserModel = mongoose.models.NewUsers || mongoose.model("NewUsers",userSchema)
 
-const User = mongoose.model('User', userSchema);
-
-export default User;
+export default UserModel
